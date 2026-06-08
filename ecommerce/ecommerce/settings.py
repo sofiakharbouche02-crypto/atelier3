@@ -23,10 +23,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-u_ajfv@^k4aq)pa1$ax2e=v)0!ewg@x2(az#vato-e_#dyq5xy'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
+# Après
+import os
+DEBUG = os.environ.get("DJANGO_DEBUG", "1") == "1"
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Application definition
 
